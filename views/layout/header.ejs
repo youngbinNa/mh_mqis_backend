@@ -1,0 +1,17 @@
+//header.ejs에서 ejs 함수를 사용한 예제
+<div id="naverLogout" class="header-profile">
+  <% if(isLogin){ %>
+  <div>
+    <div style="font-size:10pt;">
+      <span><%=loginObj.mberNm%>님</span><br/>
+      <a href="/logout" data-ajax="false" style="font-size:8pt;color:#888;"><i class="fas fa-sign-out-alt"></i> 로그아웃</a>
+    </div>
+  </div>
+  <% }else{ %>
+  <div>
+    <div  style="font-size:10pt;">
+      <span>Guest모드</span><br/>
+    </div>
+  </div>
+  <% } %>
+</div>
