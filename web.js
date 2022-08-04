@@ -7,61 +7,10 @@ const hostname='192.168.56.17';
 var bodyParser  = require('body-parser');
 const jwt = require('jsonwebtoken');
 
-// module.exports = () => {
-//   const torage = multer.diskStorage({
-//     desination : (req, file, cb) => {
-//       cb(null,'./public/images/');
-//     },
-//     filename : (req, file, cb) => {
-//       const originalFileName = file.originalname.split('.');
-//       let fileName = 'none';
-//       if(originalFileName.length > 0){
-//         fileName = `${originalFileName[0]}-${Date.now()}.${originalFileName[1]}`;
-//       }
-//       cb(null, fileName);
-//     }
-//   })
-// }
 
 var app = express();
 
-let d2simesconfig = {
-    user: 'sa',
-    password: 'Mic_7126',
-    server: '192.168.56.23',
-    database: 'DABOM41_MYUNGHWA',
-    options: {
-        enableArithAbort: true,
-        encrypt: false
-      },
-}
-global.d2simesconfig=d2simesconfig;
 
-let d2hqmsconfig = {
-    user: 'sa',
-    password: 'Mic_7126',
-    server: '192.168.56.23',
-    database: 'HQMS',
-    options: {
-        enableArithAbort: true,
-        encrypt: false
-      },
-}
-global.d2hqmsconfig=d2hqmsconfig;
-
-let gwconfig = {
-    user: 'sa',
-    password: 'mic953(%#',
-    server: '192.0.1.242',
-    database: 'WO2016',
-    options: {
-        enableArithAbort: true,
-        encrypt: false
-      },
-}
-global.gwconfig=gwconfig;
-
-//app.use(bodyParser.urlencoded({ extended: true }));
 app.set('trust proxy', true);
 app.use(express.json());
 
@@ -92,26 +41,6 @@ app.use('/api/manage', require('./routes/api/manage/usermanage'));
 app.use('/api/auth', require('./routes/api/manage/authmanage'));
 app.use('/api/manage/item', require('./routes/api/manage/itemmanage'));
 
-/*
-const verifyToken = (t) => {
-    return new Promise((resolve, reject) => {
-      jwt.verify(t, '어려운키', (err, v) => {
-        if (err) reject(err)
-        resolve(v)
-      })
-    })
-  }
-app.all('*', function(req, res, next) {
-    // 토큰 검사
-    const token = req.headers.authorization
-    verifyToken(token)
-      .then(v => {
-        console.log(v) //로그에 id,pwd,iat 띄움
-        next()
-      })
-      .catch(e => res.send({ success: false, msg: e.message }))  
-  });
-*/
 
 app.use('/api/line', require('./routes/api/master/getLineMaster'));    //기준정보/라인마스터
 app.use('/api/inspection', require('./routes/api/inspection/getLineTargetList'));    //기준정보/라인마스터
